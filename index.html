@@ -1,27 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="assets/css/app.css"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="assets/css/app.css" />
     <title>Pet Depot</title>
   </head>
+
   <body>
     <div id="app">
       <header>
-        <h1>{{ sitename }}</h1>
+        <div class="navbar navbar-default">
+          <div class="navbar-header">
+            <h1 v-text="sitename"></h1>
+          </div>
+        </div>
       </header>
+
+      <main>
+        <div class="row">
+          <div class="col-md-2 col-md-offset-1">
+            <figure>
+              <img v-bind:src="product.image" />
+            </figure>
+          </div>
+          <div class="col-md-6 col-md-offset-2 description">
+            <h1 v-text="product.title"></h1>
+            <p v-html="product.description"></p>
+            <p class="price">
+              {{product.price | formatPrice}}
+            </p>
+          </div>
+        </div>
+      </main>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script>
-var webstore = new Vue({
-  el: '#app',
-  data: {
-    sitename: 'Vue.js Pet Depot'
-  }
-})
-    </script>
+    <script src="app.js"></script>
   </body>
 </html>
