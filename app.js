@@ -24,28 +24,34 @@ var webstore = new Vue({
       CA: "California",
       NV: "Nevada"
     },
-    product: {
-      id: 1001,
-      title: "Cat Food, 25lb bag",
-      description:
-        "A 25 pound bag of <em>irresistible</em>, organic goodness for your cat.",
-      price: 2000,
-      image: "assets/images/product-fullsize.png",
-      availableInventory: 5
-    },
+    products: [],
     cart: []
   },
 
   methods: {
-    addToCart: function() {
-      this.cart.push(this.product.id);
-      console.log("add");
+    addToCart(product) {
+      this.cart.push(product.id);
     },
     showCheckout() {
       this.showProduct = this.showProduct ? false : true;
     },
     submitForm() {
       alert("Submitted");
+    },
+    checkRating(n, product) {
+      return product.rating - n >= 0;
+    },
+    canAddToCart(product) {
+      return product.availableInventory > this.cartCount(product.id);
+    },
+    cartCount(id) {
+      let count = 0;
+      for (let i = 0; i < this.cart.length; i++) {
+        if (this.cart[i] === id) {
+          count++;
+        }
+      }
+      return count;
     }
   },
 
@@ -53,8 +59,16 @@ var webstore = new Vue({
     cartItemCount: function() {
       return this.cart.length || "";
     },
-    canAddToCart: function() {
-      return this.product.availableInventory > this.cartItemCount;
+    sortedProducts() {
+      if (this.products.length > 0) {
+        let productsArray = this.products.slice(0);
+        function compare(a, b) {
+          if (a.title.toLowerCase() < b.title.toLowerCase()) return -1;
+          if (a.title.toLowerCase() > b.title.toLowerCase()) return 1;
+          return 0;
+        }
+        return productsArray.sort(compare);
+      }
     }
   },
 
@@ -79,5 +93,12 @@ var webstore = new Vue({
         return "$" + (price / 100).toFixed(2);
       }
     }
+  },
+
+  created() {
+    axios.get("./products.json").then(response => {
+      this.products = response.data.products;
+      console.log(this.products);
+    });
   }
 });
