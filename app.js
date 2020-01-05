@@ -4,6 +4,16 @@ var webstore = new Vue({
   data: {
     sitename: "Vue.js Pet Depot",
     showProduct: true,
+    order: {
+      firstName: '',
+      lastName: '',
+      address: '',
+      city: '',
+      zip: '',
+      state: '',
+      method: 'Home',
+      gift: false
+    },
     product: {
       id: 1001,
       title: "Cat Food, 25lb bag",
@@ -24,6 +34,9 @@ var webstore = new Vue({
     showCheckout() {
       this.showProduct = this.showProduct ? false : true;
     },
+    submitForm() {
+      alert('Submitted');
+    }
   },
 
   computed: {
