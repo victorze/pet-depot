@@ -3,14 +3,36 @@ var webstore = new Vue({
 
   data: {
     sitename: "Vue.js Pet Depot",
+    showProduct: true,
     product: {
       id: 1001,
       title: "Cat Food, 25lb bag",
       description:
         "A 25 pound bag of <em>irresistible</em>, organic goodness for your cat.",
       price: 2000,
-      image: "assets/images/product-fullsize.png"
-    }
+      image: "assets/images/product-fullsize.png",
+      availableInventory: 5
+    },
+    cart: []
+  },
+
+  methods: {
+    addToCart: function() {
+      this.cart.push(this.product.id);
+      console.log("add");
+    },
+    showCheckout() {
+      this.showProduct = this.showProduct ? false : true;
+    },
+  },
+
+  computed: {
+    cartItemCount: function() {
+      return this.cart.length || "";
+    },
+    canAddToCart: function() {
+      return this.product.availableInventory > this.cartItemCount;
+    },
   },
 
   filters: {
