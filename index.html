@@ -101,10 +101,12 @@
                     <strong>State:</strong>
                     <select v-model="order.state" class="form-control">
                       <option disabled value="">State</option>
-                      <option>AL</option>
-                      <option>AR</option>
-                      <option>CA</option>
-                      <option>NV</option>
+                      <option
+                        v-for="(state, key) in states"
+                        v-bind:value="state"
+                      >
+                        {{key}}
+                      </option>
                     </select>
                   </div>
                 </div>
@@ -126,6 +128,8 @@
                       type="checkbox"
                       id="gift"
                       value="true"
+                      v-bind:true-value="order.sendGift"
+                      v-bind:false-value="order.dontSendGift"
                       v-model="order.gift"
                     />
                     <label for="gift">Ship As Gift?</label>
@@ -137,6 +141,7 @@
                     <input
                       type="radio"
                       id="home"
+                      v-bind:value="order.home"
                       v-model="order.method"
                       value="Home"
                     />
@@ -144,6 +149,7 @@
                     <input
                       type="radio"
                       id="business"
+                      v-bind:value="order.business"
                       v-model="order.method"
                       value="Business"
                     />
@@ -164,16 +170,7 @@
                 </div>
 
                 <div class="col-md-12 verify">
-                  <pre>
-                    First Name: {{order.firstName}}
-                    Last Name: {{order.lastName}}
-                    Address: {{order.address}}
-                    City: {{order.city}}
-                    Zip: {{order.zip}}
-                    State: {{order.state}}
-                    Method: {{order.method}}
-                    Gift: {{order.gift}}
-                  </pre>
+                  <pre>{{ $data }}</pre>
                 </div>
               </div>
             </div>

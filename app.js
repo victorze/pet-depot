@@ -5,14 +5,24 @@ var webstore = new Vue({
     sitename: "Vue.js Pet Depot",
     showProduct: true,
     order: {
-      firstName: '',
-      lastName: '',
-      address: '',
-      city: '',
-      zip: '',
-      state: '',
-      method: 'Home',
-      gift: false
+      firstName: "",
+      lastName: "",
+      address: "",
+      city: "",
+      zip: "",
+      state: "",
+      method: "Home Address",
+      business: "Business Address",
+      home: "Home Address",
+      gift: "send As A Gift",
+      sendGift: "send As A Gift",
+      dontSendGift: "Do Not Send As A Gift"
+    },
+    states: {
+      AL: "Alabama",
+      AR: "Arizona",
+      CA: "California",
+      NV: "Nevada"
     },
     product: {
       id: 1001,
@@ -35,7 +45,7 @@ var webstore = new Vue({
       this.showProduct = this.showProduct ? false : true;
     },
     submitForm() {
-      alert('Submitted');
+      alert("Submitted");
     }
   },
 
@@ -45,7 +55,7 @@ var webstore = new Vue({
     },
     canAddToCart: function() {
       return this.product.availableInventory > this.cartItemCount;
-    },
+    }
   },
 
   filters: {
