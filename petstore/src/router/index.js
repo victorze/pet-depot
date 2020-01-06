@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
 import Form from "@/components/Form";
 import Main from "@/components/Main";
 
@@ -10,7 +9,7 @@ const routes = [
   {
     path: "/",
     name: "iMain",
-    component: Home,
+    component: Main,
     props: true
   },
   {
