@@ -14,8 +14,8 @@
             tag="button"
             class="btn btn-default btn-lg"
             :to="{ name: 'Form' }"
-          >
-            {{ cartItemCount }}
+            >
+              {{ cartItemCount }}
             <span class="glyphicon glyphicon-shopping-cart"></span>
             Checkout
           </router-link>
@@ -46,6 +46,9 @@ export default {
 <style scoped>
 a {
   text-decoration: none;
+  color: black;
+}
+.router-link-exact-active {
   color: black;
 }
 </style>

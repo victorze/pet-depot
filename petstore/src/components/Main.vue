@@ -15,6 +15,7 @@
             <router-link
               tag="h1"
               :to="{ name: 'Id', params: { id: product.id } }"
+              class="pointer"
               >{{ product.title }}</router-link
             >
             <p v-html="product.description"></p>

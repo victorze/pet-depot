@@ -28,6 +28,9 @@ body {
   font-size: 150%;
   margin-top:50px;
 }
+.pointer {
+  cursor: pointer;
+}
 
 .inventory-message {
   margin-left: 20px;
